@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4185001267344339411}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4185001267526036056}
   - component: {fileID: 4185001267526036057}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: smrad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +123,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4185001267776887478}
   - component: {fileID: 1194763922}
-  m_Layer: 0
+  - component: {fileID: 1915785796}
+  m_Layer: 8
   m_Name: Smrad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,4 +158,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4edb4f377300f7741845fd9312e488fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeToLive: 5
+  remainingTime: 0
   FeromoneType: 0
+  graphics: {fileID: 4185001267344339411}
+--- !u!58 &1915785796
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4185001267776887477}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.3

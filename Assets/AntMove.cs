@@ -11,7 +11,13 @@ public class AntMove : MonoBehaviour
     public float rotationChangeCooldown = 2;
     private float currentRotationCooldown = 0;
 
-    private float targetZRot = 0;
+
+    public Transform topLeftCorner;
+    public Transform bottomRightCorner;
+
+    private Vector3 targetPosition;
+
+    private Transform target;
 
     // Start is called before the first frame update
     void Start()
@@ -25,8 +31,18 @@ public class AntMove : MonoBehaviour
         antTrans.Translate(Vector3.up * Time.deltaTime * moveSpeed);
         if(currentRotationCooldown > 0)
         {
+            float dist = Vector3.Distance(targetPosition, antTrans.position);
+            if(dist < 0.1f)
+            {
+                currentRotationCooldown = rotationChangeCooldown;
+                GenerateRandomRotation();
+            }
+
             currentRotationCooldown -= Time.deltaTime;
-            //antTrans.rotation = Quaternion.Lerp(antTrans.rotation, Quaternion.Euler(0, 0, targetZRot), rotSpeed * Time.time);
+            var dir = transform.position - targetPosition;
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg + 90;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
         } else
         {
             currentRotationCooldown = rotationChangeCooldown;
@@ -36,7 +52,17 @@ public class AntMove : MonoBehaviour
 
     private void GenerateRandomRotation()
     {
-        targetZRot = Random.Range(-180, 180);
-        LeanTween.rotateZ(gameObject, targetZRot, 2f);
+        targetPosition = new Vector3(
+            Random.Range(topLeftCorner.position.x, bottomRightCorner.position.x), 
+            Random.Range(bottomRightCorner.position.y, topLeftCorner.position.y),
+            0
+            );
+        if (target == null)
+        {
+            target = GameObject.CreatePrimitive(PrimitiveType.Cube).transform;
+            Destroy(target.GetComponent<Collider>());
+            target.localScale = Vector3.one * 0.3f;
+        }
+        target.position = targetPosition;
     }
 }
