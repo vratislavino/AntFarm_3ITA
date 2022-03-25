@@ -5,6 +5,8 @@ using UnityEngine;
 public class AntMove : MonoBehaviour
 {
     Transform antTrans;
+    FeromoneCreator feromoneCreator;
+
     public float moveSpeed = 10;
     public float rotSpeed = 3;
 
@@ -19,20 +21,33 @@ public class AntMove : MonoBehaviour
 
     private Transform target;
 
+    public Transform headPosition;
+    
+    public LayerMask searchingForFoodLayermask;
+    public LayerMask searchingForHomeLayermask;
+
+    public LayerMask CurrentLayermask => 
+        feromoneCreator.hasFood ? 
+        searchingForHomeLayermask : 
+        searchingForFoodLayermask;
+
     // Start is called before the first frame update
     void Start()
     {
         antTrans = transform;
+        feromoneCreator = GetComponent<FeromoneCreator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        CheckForSurroundings();
+
         antTrans.Translate(Vector3.up * Time.deltaTime * moveSpeed);
         if(currentRotationCooldown > 0)
-        {
-            float dist = Vector3.Distance(targetPosition, antTrans.position);
+        {   float dist = Vector3.Distance(targetPosition, antTrans.position);
             if(dist < 0.1f)
+
             {
                 currentRotationCooldown = rotationChangeCooldown;
                 GenerateRandomRotation();
@@ -47,6 +62,20 @@ public class AntMove : MonoBehaviour
         {
             currentRotationCooldown = rotationChangeCooldown;
             GenerateRandomRotation();
+        }
+    }
+
+    private void CheckForSurroundings()
+    {
+        // layermask
+        //Debug.DrawRay(headPosition.position, headPosition.forward, Color.cyan, 0.1f);
+        var hits = Physics2D.RaycastAll(headPosition.position, headPosition.forward, 0.5f, CurrentLayermask);
+        if(hits != null && hits.Length > 0)
+        {
+            for(int i = 0; i < hits.Length; i++)
+            {
+                Debug.Log(hits[i].collider.name);
+            }
         }
     }
 

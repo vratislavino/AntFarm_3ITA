@@ -110,6 +110,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3402835741771172023}
+  - {fileID: 8185397234888132768}
   m_Father: {fileID: 3402835743786543520}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -161,6 +162,15 @@ MonoBehaviour:
   moveSpeed: 4
   rotSpeed: 3
   rotationChangeCooldown: 2
+  topLeftCorner: {fileID: 0}
+  bottomRightCorner: {fileID: 0}
+  headPosition: {fileID: 8185397234888132768}
+  searchingForFoodLayermask:
+    serializedVersion: 2
+    m_Bits: 1280
+  searchingForHomeLayermask:
+    serializedVersion: 2
+    m_Bits: 6144
 --- !u!114 &1975372394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,3 +186,33 @@ MonoBehaviour:
   homeFeromonePrefab: {fileID: 1194763922, guid: 80b67cb5ca460164086615f63bbcc7f2, type: 3}
   foodFeromonePrefab: {fileID: 1194763922, guid: ce6588e4e2b6d564c8b7670100dc80fd, type: 3}
   hasFood: 0
+--- !u!1 &8298399163340057516
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8185397234888132768}
+  m_Layer: 0
+  m_Name: HeadPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8185397234888132768
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8298399163340057516}
+  m_LocalRotation: {x: -0.70710576, y: -0, z: -0, w: 0.70710784}
+  m_LocalPosition: {x: 0, y: 0.152, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3402835742415213342}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}

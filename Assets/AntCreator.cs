@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AntCreator : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class AntCreator : MonoBehaviour
 
     public float newAntInterval = 1;
     public int count;
+
+    public Text text;
 
     List<AntMove> ants = new List<AntMove>();
 
@@ -44,6 +47,8 @@ public class AntCreator : MonoBehaviour
         ant.topLeftCorner = topLeftCorner;
         ant.bottomRightCorner = bottomRightCorner;
         ants.Add(ant);
+        text.text = ants.Count.ToString();
+
     }
 
 }

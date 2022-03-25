@@ -13,11 +13,11 @@ TagManager:
   - UI
   - 
   - 
-  - Feromone
+  - FoodFeromone
   - Ant
-  - 
-  - 
-  - 
+  - Food
+  - HomeFeromone
+  - Home
   - 
   - 
   - 
